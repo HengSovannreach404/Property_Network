@@ -27,6 +27,10 @@ const Report = sequelize.define('Report', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    admin_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 },{
     tableName: 'reports',
     timestamps: true,

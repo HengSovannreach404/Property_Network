@@ -77,6 +77,8 @@ Report.belongsTo(Buyer, { foreignKey: 'buyer_id' })
 Report.belongsTo(Listing, { foreignKey: 'listing_id' })
 Buyer.hasMany(Report, { foreignKey: 'buyer_id' })
 Listing.hasMany(Report, { foreignKey: 'listing_id' })
+Report.belongsTo(Admin, { foreignKey: 'admin_id' })
+Admin.hasMany(Report, { foreignKey: 'admin_id' })
 
 module.exports = {
     sequelize,
