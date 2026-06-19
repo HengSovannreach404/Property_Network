@@ -1,22 +1,24 @@
-const reportService =
-  require('../services/reportService')
+const reportService = require('../services/reportService')
 
-const generateReport = async (req, res) => {
+const createReport = async (req, res, next) => {
   try {
-    const report =
-      await reportService.getReport()
-
-    res.json({
-      success: true,
-      data: report
-    })
-  } catch (error) {
-    res.status(500).json({
-      message: error.message
-    })
-  }
+    const report = await reportService.createReport(req.user.id, req.body)
+    res.status(201).json({ success: true, message: 'Report submitted', data: report })
+  } catch (err) { next(err) }
 }
 
-module.exports = {
-  generateReport
+const getAllReports = async (req, res, next) => {
+  try {
+    const reports = await reportService.getAllReports()
+    res.json({ success: true, data: reports })
+  } catch (err) { next(err) }
 }
+
+const updateReportStatus = async (req, res, next) => {
+  try {
+    const report = await reportService.updateReportStatus(req.params.id, req.user.id, req.body.status)
+    res.json({ success: true, message: 'Report updated', data: report })
+  } catch (err) { next(err) }
+}
+
+module.exports = { createReport, getAllReports, updateReportStatus }
