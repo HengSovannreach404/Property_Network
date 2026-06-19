@@ -1,34 +1,25 @@
-const sequelize = require('../config/database')
-const { QueryTypes } = require('sequelize')
+const { Report, Buyer, Listing, Admin } = require('../models')
 
-const getReport = async () => {
-  const buyers = await sequelize.query(
-    `
-    SELECT COUNT(*) AS totalBuyers
-    FROM buyers
-    `,
-    {
-      type: QueryTypes.SELECT
-    }
-  )
-
-  const appointments = await sequelize.query(
-    `
-    SELECT COUNT(*) AS totalAppointments
-    FROM appointments
-    `,
-    {
-      type: QueryTypes.SELECT
-    }
-  )
-
-  return {
-    totalBuyers: buyers[0].totalBuyers,
-    totalAppointments:
-      appointments[0].totalAppointments
-  }
+const createReport = async (buyerId, data) => {
+  return await Report.create({ ...data, buyer_id: buyerId })
 }
 
-module.exports = {
-  getReport
+const getAllReports = async () => {
+  return await Report.findAll({
+    include: [
+      { model: Buyer, attributes: ['full_name', 'email'] },
+      { model: Listing, attributes: ['title', 'city'] },
+      { model: Admin, attributes: ['full_name'] },
+    ],
+    order: [['createdAt', 'DESC']],
+  })
 }
+
+const updateReportStatus = async (id, adminId, status) => {
+  const report = await Report.findByPk(id)
+  if (!report) throw new Error('Report not found')
+  await report.update({ status, admin_id: adminId })
+  return report
+}
+
+module.exports = { createReport, getAllReports, updateReportStatus }
