@@ -20,7 +20,7 @@ const SavedListing = sequelize.define('SavedListing', {
         allowNull: false,
     },
 },{
-    tableName: 'saved_listing',
+    tableName: 'saved_listings',
     timestamps: true,
     underscored: true,
 }

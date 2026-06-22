@@ -15,6 +15,7 @@ const qaRoutes = require('./routes/qaRoutes')
 const appointmentRoutes = require('./routes/appointmentRoutes')
 const reportRoutes = require('./routes/reportRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
+const uploadRoutes = require('./routes/uploadRoutes')
 
 app.use('/api/auth', authRoutes)
 app.use('/api/listings', listingRoutes)
@@ -25,6 +26,7 @@ app.use('/api/qa', qaRoutes)
 app.use('/api/appointments', appointmentRoutes)
 app.use('/api/reports', reportRoutes)
 app.use('/api/reviews', reviewRoutes)
+app.use('/api', uploadRoutes)
 
 app.get('/', (req, res) => {
   res.json({ message: 'Property Network API is running' })
