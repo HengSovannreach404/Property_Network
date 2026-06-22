@@ -17,7 +17,7 @@ const Notification = sequelize.define('Notification', {
     },
     is_read: {
         type: DataTypes.BOOLEAN,
-        defauultValue: false,
+        defaultValue: false,
     },
     buyer_id: {
         type: DataTypes.INTEGER,
@@ -25,7 +25,7 @@ const Notification = sequelize.define('Notification', {
     },
     
 }, {
-    tableName: 'Notifications',
+    tableName: 'notifications',
     timestamps: true,
     underscored: true,
 }
