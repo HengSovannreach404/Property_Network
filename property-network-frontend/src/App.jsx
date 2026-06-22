@@ -4,6 +4,8 @@ import { useAuth } from './hooks/useAuth'
 // Auth
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
+import ResetPassword from './pages/auth/ResetPassword'
+import ForgotPassword from './pages/auth/ForgotPassword'
 
 // Buyer
 import BuyerHome from './pages/buyer/Home'
@@ -49,6 +51,8 @@ function App() {
         {/* Public */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* Buyer */}
         <Route path="/buyer" element={<ProtectedRoute allowedRoles={['buyer']}><Layout /></ProtectedRoute>}>

@@ -21,4 +21,26 @@ const login = async (req, res, next) => {
   }
 }
 
-module.exports = { register, login }
+const forgotPassword = async (req, res, next) => {
+  try {
+    const { role } = req.params
+    const { email } = req.body
+    const result = await authService.forgotPassword(role, email)
+    res.json({ success: true, message: result.message })
+  } catch (err) {
+    next(err)
+  }
+}
+
+const resetPassword = async (req, res, next) => {
+  try {
+    const { role } = req.params
+    const { token, newPassword } = req.body
+    const result = await authService.resetPassword(role, token, newPassword)
+    res.json({ success: true, message: result.message })
+  } catch (err) {
+    next(err)
+  }
+}
+
+module.exports = { register, login, forgotPassword, resetPassword }
