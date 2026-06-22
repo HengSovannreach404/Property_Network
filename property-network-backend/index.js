@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const PORT = process.env.PORT || 5000
 
-sequelize.sync({ force: false })
+sequelize.authenticate()
   .then(() => {
     console.log('Database connected and synced')
     app.listen(PORT, () => {

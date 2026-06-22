@@ -30,6 +30,14 @@ const Buyer = sequelize.define('Buyer', {
         type: DataTypes.ENUM('active', 'banned'),
         defaultValue: 'active',
     },
+    reset_token: {
+    type: DataTypes.STRING,
+    allowNull: true,
+},
+    reset_token_expiry: {
+    type: DataTypes.DATE,
+    allowNull: true,
+},
 }, {
     tableName: 'buyers',
     timestamps: true,
