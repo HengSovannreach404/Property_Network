@@ -13,6 +13,10 @@ const verifyAgent = async (agentId) => {
   if (!agent) throw new Error('Agent not found')
   agent.is_verified = true
   await agent.save()
+<<<<<<< HEAD
+=======
+  agent.password = undefined
+>>>>>>> upstream/main
   return agent
 }
 
@@ -21,6 +25,10 @@ const updateBuyerStatus = async (buyerId, status) => {
   if (!buyer) throw new Error('Buyer not found')
   buyer.status = status
   await buyer.save()
+<<<<<<< HEAD
+=======
+  buyer.password = undefined
+>>>>>>> upstream/main
   return buyer
 }
 
